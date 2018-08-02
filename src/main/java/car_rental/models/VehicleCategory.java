@@ -1,9 +1,12 @@
 package car_rental.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class VehicleCategory
@@ -13,6 +16,20 @@ public class VehicleCategory
     private long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy = "category")
+    private List<Vehicle> vehicleList;
+
+    public VehicleCategory(String name, String description)
+    {
+        this.name = name;
+        this.description = description;
+    }
+
+    public VehicleCategory()
+    {
+
+    }
 
     public void setId(long id)
     {
@@ -36,4 +53,20 @@ public class VehicleCategory
     {
         return this.description;
     }
+
+    public List<Vehicle> getVehicleList()
+    {
+        return this.vehicleList;
+    }
+
+    public void setVehicleList(List<Vehicle> vehicleList)
+    {
+        this.vehicleList = vehicleList;
+    }
+
+    public void addVehicle(Vehicle vehicle)
+    {
+        this.vehicleList.add(vehicle);
+    }
+
 }
