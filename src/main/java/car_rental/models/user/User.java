@@ -4,8 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User
 {
     @Id
@@ -13,9 +18,14 @@ public abstract class User
     protected long userId;
     protected String fullName;
     
-    public User(String fullName)
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    protected Address address;
+
+    public User(String fullName, Address address)
     {
         this.fullName = fullName;
+        this.address = address;
     }
 
     public User()
@@ -41,5 +51,15 @@ public abstract class User
     public void setFullName(String fullName)
     {
         this.fullName = fullName;
+    }
+
+    public Address getAddress()
+    {
+        return this.address;
+    }
+
+    public void setAddress(Address address)
+    {
+        this.address = address;
     }
 }
