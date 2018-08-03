@@ -1,4 +1,4 @@
-package car_rental.models;
+package car_rental.models.vehicle;
 
 import java.time.LocalDate;
 

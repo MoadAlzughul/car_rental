@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import car_rental.models.VehicleCategory;
+import car_rental.models.vehicle.VehicleCategory;
 
 import car_rental.repository.VehicleCategoryRepository;
 
