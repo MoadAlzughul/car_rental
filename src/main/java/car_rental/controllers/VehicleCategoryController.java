@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
 
 import car_rental.models.vehicle.VehicleCategory;
 
@@ -20,5 +21,13 @@ public class VehicleCategoryController {
     public @ResponseBody Iterable<VehicleCategory>getAllVehicles()
     {
         return categoryRepository.findAll();
+    }
+
+
+    @GetMapping("/categories")
+    public String vehicleCategories(Model model)
+    {
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "categories";
     }
 }
