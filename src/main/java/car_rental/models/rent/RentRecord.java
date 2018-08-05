@@ -6,6 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import car_rental.models.user.Customer;
+import car_rental.models.vehicle.Vehicle;
 
 @Entity
 public class RentRecord
@@ -14,6 +20,13 @@ public class RentRecord
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    
     private LocalDate rentDate;
     private LocalDate returnDate;
     private double fee;
@@ -22,8 +35,10 @@ public class RentRecord
 
     private boolean paid;
 
-    public RentRecord(LocalDate rentDate, LocalDate returnDate, double fee)
+    public RentRecord(Vehicle vehicle, Customer customer, LocalDate rentDate, LocalDate returnDate, double fee)
     {
+        this.vehicle = vehicle;
+        this.customer = customer;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
         this.fee = fee;
@@ -64,6 +79,26 @@ public class RentRecord
         this.returnDate = returnDate;
     }
 
+    public Vehicle getVehicle()
+    {
+        return this.vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle)
+    {
+        this.vehicle = vehicle;
+    }
+
+    public Customer getCustomer()
+    {
+        return this.customer;
+    }
+
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
+    }
+    
     public double getFee()
     {
         return this.fee;
