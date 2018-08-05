@@ -16,14 +16,16 @@ public class VehicleCategory
     private long id;
     private String name;
     private String description;
+    private String car_img;
 
     @OneToMany(mappedBy = "category")
     private List<Vehicle> vehicleList;
 
-    public VehicleCategory(String name, String description)
+    public VehicleCategory(String name, String description, String car_img)
     {
         this.name = name;
         this.description = description;
+        this.car_img = car_img;
     }
 
     public VehicleCategory()
@@ -45,6 +47,15 @@ public class VehicleCategory
         return this.name;
     }
 
+    public void setCarImgUrl(String car_img)
+    {
+        this.car_img = car_img;
+    }
+
+    public String getCarImgUrl()
+    {
+        return this.car_img;
+    }
     public void setDescription(String description)
     {
         this.description = description;

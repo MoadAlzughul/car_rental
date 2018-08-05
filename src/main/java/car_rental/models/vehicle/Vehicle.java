@@ -18,19 +18,18 @@ public class Vehicle
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
     private String model;
 
     @NotNull
     private LocalDate year;
 
-    @NotNull
     private String make;
 
     private boolean available = true;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
+    @NotNull(message = "Vehicle Category is required")
     private VehicleCategory category;
     private String description;
     private double rentFee;
